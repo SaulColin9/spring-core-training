@@ -4,7 +4,6 @@ import configuration.car.Car;
 import configuration.engine.Engine;
 import org.springframework.stereotype.Component;
 
-@Component("Bumblebee")
 public class VolkswagenBeetle implements Car {
     private Engine engine;
     public VolkswagenBeetle(Engine engine){

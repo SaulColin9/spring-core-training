@@ -24,5 +24,6 @@ public class SpringApp {
         //print all created bean names
         ParkingLot freeParkingLot = (FreeParkingLot)context.getBean("freeParkingLot");
         freeParkingLot.printCarNames();
+
     }
 }
