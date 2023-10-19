@@ -10,12 +10,9 @@ public class ChevroletCamaro implements Car {
 
     private int maxSpeed;
 
-    @Autowired
-    public void setMaxSpeed(@Value("${chevrolet.maxSpeed:300}")int maxSpeed){
-        this.maxSpeed = maxSpeed;
-    }
-    public ChevroletCamaro(Engine engine){
+    public ChevroletCamaro(Engine engine, int maxSpeed){
         this.engine = engine;
+        this.maxSpeed = maxSpeed;
     }
 
     @Override

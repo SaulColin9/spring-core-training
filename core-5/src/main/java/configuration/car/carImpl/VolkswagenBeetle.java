@@ -10,13 +10,9 @@ public class VolkswagenBeetle implements Car {
     private Engine engine;
     private String oilName;
 
-    @Autowired
-    void setOilName(@Value("${volkswagen.oil}") String oilName){
-        this.oilName = oilName;
-    }
-
-    public VolkswagenBeetle(Engine engine){
+    public VolkswagenBeetle(Engine engine, String oilName){
         this.engine = engine;
+        this.oilName= oilName;
     }
 
     @Override

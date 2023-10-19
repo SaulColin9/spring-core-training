@@ -2,28 +2,17 @@ package configuration.parkinglot.parkinglotImpl;
 
 import configuration.car.Car;
 import configuration.parkinglot.ParkingLot;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import java.util.Map;
 
-import java.util.List;
-
-public class FreeParkingLot implements ParkingLot, ApplicationContextAware {
+public class FreeParkingLot implements ParkingLot{
     @Autowired
-    List<Car> cars;
-
-    ApplicationContext applicationContext;
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
+    Map<String, Car> cars;
     @Override
     public void printCarNames() {
-       applicationContext.getBeansOfType(Car.class).forEach((bean, car)->{
-           System.out.println(bean);
-       });
+        for(String bean: cars.keySet()){
+            System.out.println(bean);
+        }
     }
 
     @Override
@@ -31,3 +20,4 @@ public class FreeParkingLot implements ParkingLot, ApplicationContextAware {
         System.out.println("Quantity of cars: " + cars.size());
     }
 }
+

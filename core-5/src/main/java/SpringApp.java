@@ -30,6 +30,5 @@ public class SpringApp {
 
         ChevroletCamaro chevroletCamaro = (ChevroletCamaro) context.getBean("wheelsOfDevil");
         System.out.println(chevroletCamaro);
-
     }
 }
