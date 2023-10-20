@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Map;
 
 public class FreeParkingLot implements ParkingLot{
-    @Autowired
-    Map<String, Car> cars;
+    private Map<String, Car> cars;
+
+    public FreeParkingLot(Map<String, Car> cars){
+        this.cars = cars;
+    }
     @Override
     public void printCarNames() {
         for(String bean: cars.keySet()){
             System.out.println(bean);
         }
     }
-
     @Override
     public void printCarsCount() {
         System.out.println("Quantity of cars: " + cars.size());

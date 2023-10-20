@@ -1,5 +1,6 @@
 package configuration;
 
+import configuration.car.Car;
 import configuration.car.carImpl.ChevroletCamaro;
 import configuration.car.carImpl.FordBronco;
 import configuration.car.carImpl.FordRaptor;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
+import java.util.Map;
 
 @Configuration
 public class BeanConfiguration {
@@ -39,8 +42,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    FreeParkingLot freeParkingLot(){
-        return new FreeParkingLot();
+    FreeParkingLot freeParkingLot(@Autowired Map<String, Car> cars){
+        return new FreeParkingLot(cars);
     }
 
     @Primary
