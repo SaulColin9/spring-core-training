@@ -9,5 +9,20 @@ public class DecoratorPattern {
 
     public static void main(String[] args) {
 
+        Sender simpleEmailSender = new SimpleEmailSender();
+
+        //Since the message is sent, it does not throw the RuntimeException
+        simpleEmailSender = new PersistentSender(simpleEmailSender);
+        simpleEmailSender.send("Hello");
+        simpleEmailSender = new PersistentSender(simpleEmailSender);
+
+        //Cleans
+        simpleEmailSender = new MessageCleaner(simpleEmailSender);
+        simpleEmailSender.send("____  Hello World %$%#");
+
+        //Throws Exception after two attempts
+        simpleEmailSender = new PersistentSender(simpleEmailSender);
+        simpleEmailSender = new PersistentSender(simpleEmailSender);
+
     }
 }
