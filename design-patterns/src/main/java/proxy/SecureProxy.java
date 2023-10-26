@@ -2,18 +2,17 @@ package proxy;
 
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SecureProxy extends Proxy{
-    List<String> allowedUsers = new ArrayList<>();
+    List<String> allowedUsers = new ArrayList<>(Arrays.asList("admin", "stakeholder"));
     public SecureProxy(){
-        System.out.println("Secure Proxy Initialized...");
-        allowedUsers.add("admin");
-        allowedUsers.add("stakeholder");
         this.connection = new DbConnection();
     }
     @Override
     public void connect(String user, String password){
+        System.out.println("Secure Proxy Connection Initialized...");
         try{
             System.out.println("Checking authorization...");
             if(!authorize(user)) {
