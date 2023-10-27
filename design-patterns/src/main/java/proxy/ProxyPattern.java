@@ -1,5 +1,6 @@
 package proxy;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Map;
 
 public class ProxyPattern {
@@ -10,6 +11,15 @@ public class ProxyPattern {
     // all users except "admin" and "stakeholder" while connecting
 
     public static void main(String[] args) {
-        // put your result here
+        Proxy proxy = new LazyProxy();
+        proxy.connect("stakeholder", "1234");
+
+        System.out.println("=====================");
+        //Authenticated credentials
+        proxy = new SecureProxy();
+        proxy.connect("admin", "root");
+        //Non authenticated credentials
+        System.out.println("=====================");
+        proxy.connect("user", "pass");
     }
 }
