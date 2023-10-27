@@ -8,10 +8,23 @@
 // PLUS or PREMIUM spec. Or I want ChevroletCamaro to have only LUXURY or LIMITED spec. Without limits
 // it should be random from all the range.
 
+import configuration.BeanConfiguration;
+import configuration.car.carImpl.ChevroletCamaro;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 public class SpringApp {
 
     public static void main(String[] args) {
         //initialize application context there
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(BeanConfiguration.class);
+        context.getEnvironment().setActiveProfiles("old", "sport", "cross-country", "futuristic");
+        context.refresh();
+        context.registerShutdownHook();
+
+        ChevroletCamaro camaro = context.getBean("wheelsOfDevil", ChevroletCamaro.class);
+        System.out.println(camaro.getCarSpecification());
+
 
     }
 }
