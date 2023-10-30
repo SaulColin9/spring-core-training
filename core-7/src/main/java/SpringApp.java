@@ -15,11 +15,11 @@ public class SpringApp {
     public static void main(String[] args) {
         //initialize application context there
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.getEnvironment().setActiveProfiles("sport", "old");
+        context.getEnvironment().setActiveProfiles("sport", "old", "cross-country");
         context.register(BeanConfiguration.class);
         context.refresh();
 
-        for(String bean: context.getBeanDefinitionNames()){
+        for (String bean : context.getBeanDefinitionNames()) {
             System.out.println(bean);
         }
     }
