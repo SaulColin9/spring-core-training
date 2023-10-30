@@ -27,10 +27,8 @@ public class SpringApp {
         FordConveyorA fordConveyorA = context.getBean("fordConveyorA", FordConveyorA.class);
         FordConveyorB fordConveyorB = context.getBean("fordConveyorB", FordConveyorB.class);
 
-        FordBronco fordBroncoA = (FordBronco) fordConveyorA.produceFordCar();
-        FordBronco fordBroncoB = (FordBronco) fordConveyorB.produceFordCar();
-
-        System.out.println(fordBroncoA == fordBroncoB);
+        System.out.println(fordConveyorA.produceFordCar() == fordConveyorA.produceFordCar());
+        System.out.println(fordConveyorB.produceFordCar() == fordConveyorB.produceFordCar());
 
 
     }

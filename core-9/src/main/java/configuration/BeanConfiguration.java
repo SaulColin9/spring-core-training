@@ -10,6 +10,7 @@ import configuration.engine.engineImpl.V12Engine;
 import configuration.engine.engineImpl.V6Engine;
 import configuration.parkinglot.parkinglotImpl.FreeParkingLot;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
@@ -39,6 +40,7 @@ public class BeanConfiguration {
     }
 
     @Bean("powerOverwhelmingStuff")
+    @Profile("sport")
     V12Engine v12Engine() {
         return new V12Engine();
     }
@@ -50,6 +52,7 @@ public class BeanConfiguration {
     }
 
     @Bean("oldSchoolStuff")
+    @Profile("old")
     FourCylinderEngine fourCylinderEngine() {
         return new FourCylinderEngine();
     }
@@ -63,6 +66,7 @@ public class BeanConfiguration {
 
     @Primary
     @Bean(value = "defaultV6Engine")
+    @Profile("cross-country")
     V6Engine v6Engine(@Value("#{ ${ford.engine.cylinders}*2 }") int quantityOfCylinders) {
         return new V6Engine(quantityOfCylinders);
     }
@@ -81,13 +85,15 @@ public class BeanConfiguration {
     }
 
     @Bean
-    FordConveyorA fordConveyorA(@Qualifier("4x4") Car car) {
-        return new FordConveyorA(car);
+    @Profile("cross-country")
+    FordConveyorA fordConveyorA() {
+        return new FordConveyorA();
     }
 
     @Bean
-    FordConveyorB fordConveyorB(@Qualifier("4x4") Car car) {
-        return new FordConveyorB(car);
+    @Profile("cross-country")
+    FordConveyorB fordConveyorB() {
+        return new FordConveyorB();
     }
 
 }
