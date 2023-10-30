@@ -13,54 +13,56 @@ import org.springframework.context.annotation.*;
 import org.springframework.lang.Nullable;
 
 @Configuration
-@PropertySource(value="context.properties")
+@PropertySource(value = "context.properties")
 public class BeanConfiguration {
     @Bean
-    TeslaHoverPlus teslaHoverPlus(@Qualifier("plasmaEngine")@Nullable Engine engine){
+    TeslaHoverPlus teslaHoverPlus(@Qualifier("plasmaEngine") @Lazy Engine engine) {
         return new TeslaHoverPlus(engine);
     }
+
     @Bean
-    TeslaHover teslaHover(@Qualifier("plasmaEngine")@Autowired(required = false) Engine engine){
+    TeslaHover teslaHover(@Qualifier("plasmaEngine") @Autowired(required = false) Engine engine) {
         return new TeslaHover(engine);
     }
+
     @Bean("wheelsOfDevil")
-    ChevroletCamaro chevroletCamaro(@Qualifier("powerOverwhelmingStuff") Engine engine, @Value("${chevrolet.maxSpeed:300}")int maxSpeed){
+    ChevroletCamaro chevroletCamaro(@Qualifier("powerOverwhelmingStuff") Engine engine, @Value("${chevrolet.maxSpeed:300}") int maxSpeed) {
         return new ChevroletCamaro(engine, maxSpeed);
     }
 
     @Bean("powerOverwhelmingStuff")
-    V12Engine v12Engine(){
+    V12Engine v12Engine() {
         return new V12Engine();
     }
 
     @Bean
-    VolkswagenBeetle Bumblebee(@Qualifier("oldSchoolStuff")Engine engine, @Value("${volkswagen.oil}")String oilName){
+    VolkswagenBeetle Bumblebee(@Qualifier("oldSchoolStuff") Engine engine, @Value("${volkswagen.oil}") String oilName) {
         return new VolkswagenBeetle(engine, oilName);
     }
 
     @Bean("oldSchoolStuff")
-    FourCylinderEngine fourCylinderEngine(){
+    FourCylinderEngine fourCylinderEngine() {
         return new FourCylinderEngine();
     }
 
     @Bean
-    FreeParkingLot freeParkingLot(){
+    FreeParkingLot freeParkingLot() {
         return new FreeParkingLot();
     }
 
     @Primary
     @Bean("defaultV6Engine")
-    V6Engine v6Engine(@Value("${ford.engine.cylinders}") int quantityOfCylinders){
+    V6Engine v6Engine(@Value("${ford.engine.cylinders}") int quantityOfCylinders) {
         return new V6Engine(quantityOfCylinders);
     }
 
     @Bean("4x4")
-    FordBronco fordBronco(Engine engine){
+    FordBronco fordBronco(Engine engine) {
         return new FordBronco(engine);
     }
 
     @Bean
-    FordRaptor jurassicCar(Engine engine){
+    FordRaptor jurassicCar(Engine engine) {
         return new FordRaptor(engine);
     }
 
